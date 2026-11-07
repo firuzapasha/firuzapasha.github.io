@@ -1,0 +1,789 @@
+# Admin panel settings. If your GitHub repository has a different name, change "repo" below.
+backend:
+  name: github
+  repo: firuzapasha/firuzapasha.github.io
+  branch: main
+site_url: https://firuzapasha.github.io
+display_url: https://firuzapasha.github.io
+media_folder: images/uploads
+public_folder: /images/uploads
+collections:
+- name: projects
+  label: Projects
+  icon: photo_library
+  files:
+  - name: projects
+    label: Projects — add, edit, archive, delete, reorder
+    file: content/projects.json
+    fields:
+    - name: items
+      label: Projects
+      label_singular: project
+      widget: list
+      summary: '{{fields.title.en}} · {{fields.client}} · {{fields.status}}'
+      collapsed: true
+      fields:
+      - name: title
+        label: Project title
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: client
+        label: Client
+        widget: string
+        required: false
+      - name: category
+        label: Category
+        widget: select
+        options:
+        - label: Social Media
+          value: social
+        - label: 3D & Motion
+          value: motion
+        - label: Branding
+          value: brand
+        - label: Print
+          value: print
+        - label: Web & UI
+          value: web
+        - label: Other
+          value: other
+        default: social
+      - name: status
+        label: Visibility
+        widget: select
+        hint: Archive to hide a project without deleting it.
+        default: published
+        options:
+        - label: Published — visible on the site
+          value: published
+        - label: Archived — hidden, kept here
+          value: archived
+      - name: featured
+        label: Show on home page
+        widget: boolean
+        required: false
+        default: false
+      - name: year
+        label: Year
+        widget: string
+        required: false
+      - name: cover_image
+        label: Cover image
+        widget: image
+        required: false
+        hint: Upload a cover. Leave empty to use the drawn cover below.
+      - name: cover_style
+        label: Drawn cover style (used when no cover image)
+        widget: select
+        required: false
+        default: brand
+        options:
+        - label: Posters
+          value: posters
+        - label: Phone / social post
+          value: phone
+        - label: 3D shapes
+          value: 3d
+        - label: Big letter (branding)
+          value: brand
+        - label: Logo shape
+          value: logo
+        - label: Print sheets
+          value: print
+        - label: Motion / video
+          value: motion
+        - label: Website
+          value: web
+      - name: cover_color
+        label: Drawn cover colour
+        widget: select
+        required: false
+        default: sand
+        options:
+        - label: Sand
+          value: sand
+        - label: Coral
+          value: coral
+        - label: Black
+          value: ink
+        - label: Sage
+          value: sage
+        - label: Lilac
+          value: lilac
+        - label: Sky
+          value: sky
+        - label: Butter
+          value: butter
+        - label: Blush
+          value: blush
+      - name: cover_letter
+        label: Letter on drawn cover
+        widget: string
+        required: false
+        hint: One or two characters, e.g. R
+      - name: behance
+        label: Behance link
+        widget: string
+        required: false
+        hint: Optional. Adds a "View on Behance" button.
+      - name: summary
+        label: Short intro (shown big at the top of the project page)
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: text
+          required: false
+        - name: de
+          label: Deutsch
+          widget: text
+          required: false
+      - name: body
+        label: Project text
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: richtext
+          required: false
+        - name: de
+          label: Deutsch
+          widget: richtext
+          required: false
+        hint: Write about the brief, idea and result. You can use headings, lists, links and images.
+      - name: gallery
+        label: Gallery images
+        widget: list
+        required: false
+        label_singular: image
+        summary: '{{fields.caption.en}}'
+        fields:
+        - name: image
+          label: Image
+          widget: image
+        - name: caption
+          label: Caption
+          widget: object
+          fields:
+          - name: en
+            label: English
+            widget: string
+            required: false
+          - name: de
+            label: Deutsch
+            widget: string
+            required: false
+        - name: wide
+          label: Full width
+          widget: boolean
+          required: false
+          default: false
+      hint: Drag to reorder. The order here is the order on the site.
+    - name: page_title
+      label: '"All work" page title'
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: page_intro
+      label: '"All work" page intro'
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+    - name: more_text
+      label: Text in the Behance box at the bottom
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+- name: site
+  label: Website texts
+  icon: edit_note
+  files:
+  - name: general
+    label: Name, photo & contact
+    file: content/general.json
+    fields:
+    - name: first_name
+      label: First name
+      widget: string
+    - name: last_name
+      label: Last name
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: photo
+      label: Your photo
+      widget: image
+    - name: photo_sticker
+      label: Sticker on the photo
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+    - name: header_status
+      label: Text in the top bar (desktop)
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+        required: false
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: show_available
+      label: Show the "available" badge
+      widget: boolean
+      required: false
+      default: true
+    - name: available_badge
+      label: '"Available" badge text'
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+        required: false
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: mobile_badge
+      label: Extra badge on phones
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+        required: false
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+      hint: E.g. the work permit note. Leave empty to hide.
+    - name: email
+      label: Email
+      widget: string
+    - name: phone
+      label: Phone
+      widget: string
+      required: false
+      hint: Leave empty to hide.
+    - name: location
+      label: Footer location line
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+        required: false
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: socials
+      label: Links (Behance, LinkedIn, …)
+      label_singular: link
+      widget: list
+      summary: '{{fields.label}}'
+      fields:
+      - name: label
+        label: Name
+        widget: string
+      - name: url
+        label: Link (https://…)
+        widget: string
+    - name: page_title
+      label: Browser tab title
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: page_description
+      label: Search engine description
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+        required: false
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+  - name: home
+    label: Home page texts
+    file: content/home.json
+    fields:
+    - name: hero_intro
+      label: Intro text under your name
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+    - name: hero_prefix
+      label: Rotating line — first words (e.g. "I design")
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: hero_words
+      label: Rotating line — changing words
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: list
+        field:
+          name: item
+          label: Word
+          widget: string
+      - name: de
+        label: Deutsch
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Word
+          widget: string
+    - name: marquee
+      label: Moving strip words
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: list
+        field:
+          name: item
+          label: Word
+          widget: string
+      - name: de
+        label: Deutsch
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Word
+          widget: string
+    - name: work_label
+      label: Selected work — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: work_heading
+      label: Selected work — heading
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+    - name: about_label
+      label: About — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: about_big
+      label: About — big text
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+    - name: about_p1
+      label: About — paragraph 1
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+        required: false
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+    - name: about_p2
+      label: About — paragraph 2
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+        required: false
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+    - name: stats
+      label: Numbers
+      label_singular: number
+      widget: list
+      summary: '{{fields.number}}{{fields.suffix}}'
+      fields:
+      - name: number
+        label: Number
+        widget: number
+        value_type: int
+      - name: suffix
+        label: After the number (e.g. +)
+        widget: string
+        required: false
+      - name: label
+        label: Label
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+    - name: services_label
+      label: Services — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: services_heading
+      label: Services — heading
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+    - name: services
+      label: Services
+      label_singular: service
+      widget: list
+      summary: '{{fields.title.en}}'
+      fields:
+      - name: title
+        label: Title
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+        hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+      - name: text
+        label: Description
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: text
+        - name: de
+          label: Deutsch
+          widget: text
+          required: false
+    - name: contact_label
+      label: Contact — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: contact_heading
+      label: Contact — big heading
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+  - name: experience
+    label: Experience, education, tools & languages
+    file: content/experience.json
+    fields:
+    - name: label
+      label: Experience — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: heading
+      label: Experience — heading
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: text
+      - name: de
+        label: Deutsch
+        widget: text
+        required: false
+      hint: 'Tip: put a word between *stars* to make it orange italic. A new line starts a new line.'
+    - name: jobs
+      label: Jobs
+      label_singular: job
+      widget: list
+      summary: '{{fields.role}} · {{fields.company}}'
+      fields:
+      - name: years
+        label: Years (e.g. 2022 — Now)
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: role
+        label: Job title
+        widget: string
+      - name: company
+        label: Company
+        widget: string
+      - name: place
+        label: Place (e.g. Remote)
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+          required: false
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: text
+        label: Description
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: text
+          required: false
+        - name: de
+          label: Deutsch
+          widget: text
+          required: false
+    - name: education
+      label: Education
+      label_singular: course
+      widget: list
+      summary: '{{fields.title.en}}'
+      fields:
+      - name: meta
+        label: Years & school
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: title
+        label: Title
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: text
+        label: Description
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: text
+          required: false
+        - name: de
+          label: Deutsch
+          widget: text
+          required: false
+    - name: tools_label
+      label: Tools — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: tools_heading
+      label: Tools — heading
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: tools
+      label: Tools
+      widget: list
+      field:
+        name: tool
+        label: Tool
+        widget: string
+    - name: languages_label
+      label: Languages — small label
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: languages_heading
+      label: Languages — heading
+      widget: object
+      fields:
+      - name: en
+        label: English
+        widget: string
+      - name: de
+        label: Deutsch
+        widget: string
+        required: false
+    - name: languages
+      label: Languages
+      label_singular: language
+      widget: list
+      summary: '{{fields.name.en}}'
+      fields:
+      - name: name
+        label: Language
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: level
+        label: Level
+        widget: object
+        fields:
+        - name: en
+          label: English
+          widget: string
+        - name: de
+          label: Deutsch
+          widget: string
+          required: false
+      - name: dots
+        label: Level dots (1–5)
+        widget: number
+        value_type: int
+        min: 1
+        max: 5

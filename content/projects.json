@@ -1,0 +1,316 @@
+{
+  "page_title": {
+    "en": "All work",
+    "de": "Arbeiten"
+  },
+  "page_intro": {
+    "en": "Branding, social media, 3D & motion, print and web projects.",
+    "de": "Branding, Social Media, 3D & Motion, Print und Web."
+  },
+  "more_text": {
+    "en": "There's more on *Behance.*",
+    "de": "Mehr gibt es auf *Behance.*"
+  },
+  "items": [
+    {
+      "title": {
+        "en": "Social Media Posters",
+        "de": "Social-Media-Poster"
+      },
+      "client": "MPAY",
+      "category": "social",
+      "status": "published",
+      "featured": true,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "phone",
+      "cover_color": "lilac",
+      "cover_letter": "M",
+      "behance": "https://www.behance.net/gallery/171337365/Social-Media-Posters-MPAY",
+      "summary": {
+        "en": "A social media poster series for MPAY.",
+        "de": "Eine Social-Media-Posterserie für MPAY."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "3D Social Media Posts",
+        "de": "3D-Social-Media-Posts"
+      },
+      "client": "Payriff",
+      "category": "motion",
+      "status": "published",
+      "featured": true,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "3d",
+      "cover_color": "sky",
+      "cover_letter": "P",
+      "behance": "https://www.behance.net/gallery/187335803/3D-Social-Media-Posts-Payriff",
+      "summary": {
+        "en": "3D social media posts for Payriff.",
+        "de": "3D-Social-Media-Posts für Payriff."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Social Media Posters",
+        "de": "Social-Media-Poster"
+      },
+      "client": "Nexus Adv",
+      "category": "social",
+      "status": "published",
+      "featured": true,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "posters",
+      "cover_color": "coral",
+      "cover_letter": "N",
+      "behance": "https://www.behance.net/gallery/221811189/Social-Media-Posters-for-Nexus-Adv",
+      "summary": {
+        "en": "Social media posters for Nexus Adv.",
+        "de": "Social-Media-Poster für Nexus Adv."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Restore — Branding",
+        "de": "Restore — Branding"
+      },
+      "client": "Restore",
+      "category": "brand",
+      "status": "published",
+      "featured": true,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "brand",
+      "cover_color": "sage",
+      "cover_letter": "R",
+      "behance": "https://www.behance.net/gallery/175439987/Restore-Branding",
+      "summary": {
+        "en": "Branding for Restore.",
+        "de": "Branding für Restore."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "UBank Video Presentation",
+        "de": "UBank Videopräsentation"
+      },
+      "client": "Unibank",
+      "category": "motion",
+      "status": "published",
+      "featured": true,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "motion",
+      "cover_color": "coral",
+      "cover_letter": "U",
+      "behance": "https://www.behance.net/gallery/153623465/Unibank-UBank-Video-Presentation",
+      "summary": {
+        "en": "A video presentation for Unibank’s UBank.",
+        "de": "Eine Videopräsentation für UBank von Unibank."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Print Design",
+        "de": "Printdesign"
+      },
+      "client": "Unibank",
+      "category": "print",
+      "status": "published",
+      "featured": true,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "print",
+      "cover_color": "butter",
+      "cover_letter": "U",
+      "behance": "https://www.behance.net/gallery/174277013/Prints-design-for-Unibank",
+      "summary": {
+        "en": "Print design for Unibank.",
+        "de": "Printdesign für Unibank."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Social Media Posters",
+        "de": "Social-Media-Poster"
+      },
+      "client": "Unibank",
+      "category": "social",
+      "status": "published",
+      "featured": false,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "posters",
+      "cover_color": "ink",
+      "cover_letter": "U",
+      "behance": "https://www.behance.net/gallery/164600263/Unibank-Social-Media-Posters",
+      "summary": {
+        "en": "Social media posters for Unibank.",
+        "de": "Social-Media-Poster für Unibank."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Social Media Posters — Motion",
+        "de": "Social-Media-Poster — Motion"
+      },
+      "client": "Motion",
+      "category": "motion",
+      "status": "published",
+      "featured": false,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "motion",
+      "cover_color": "ink",
+      "cover_letter": "M",
+      "behance": "https://www.behance.net/gallery/175061329/Social-Media-Posters-Motion",
+      "summary": {
+        "en": "Animated social media posters.",
+        "de": "Animierte Social-Media-Poster."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Oneoffice Logo Design",
+        "de": "Oneoffice Logodesign"
+      },
+      "client": "Oneoffice",
+      "category": "brand",
+      "status": "published",
+      "featured": false,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "logo",
+      "cover_color": "sand",
+      "cover_letter": "O",
+      "behance": "https://www.behance.net/gallery/129636841/Oneoffice-logo-design",
+      "summary": {
+        "en": "Logo design for Oneoffice.",
+        "de": "Logodesign für Oneoffice."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Carera Landing Page",
+        "de": "Carera Landingpage"
+      },
+      "client": "Carera",
+      "category": "web",
+      "status": "published",
+      "featured": false,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "web",
+      "cover_color": "blush",
+      "cover_letter": "C",
+      "behance": "https://www.behance.net/gallery/130298723/Carera-landing-page",
+      "summary": {
+        "en": "A landing page for Carera.",
+        "de": "Eine Landingpage für Carera."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "East Park Premium Suites",
+        "de": "East Park Premium Suites"
+      },
+      "client": "Website",
+      "category": "web",
+      "status": "published",
+      "featured": false,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "web",
+      "cover_color": "sand",
+      "cover_letter": "E",
+      "behance": "https://www.behance.net/gallery/129934695/East-Park-Premium-Suites-Website-design",
+      "summary": {
+        "en": "Website design for East Park Premium Suites.",
+        "de": "Website-Design für East Park Premium Suites."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    },
+    {
+      "title": {
+        "en": "Digital Brain Website",
+        "de": "Digital Brain Website"
+      },
+      "client": "Digital Brain",
+      "category": "web",
+      "status": "published",
+      "featured": false,
+      "year": "",
+      "cover_image": "",
+      "cover_style": "web",
+      "cover_color": "lilac",
+      "cover_letter": "D",
+      "behance": "https://www.behance.net/gallery/129471153/Digital-Brain-Website",
+      "summary": {
+        "en": "Website design for Digital Brain.",
+        "de": "Website-Design für Digital Brain."
+      },
+      "body": {
+        "en": "",
+        "de": ""
+      },
+      "gallery": []
+    }
+  ]
+}

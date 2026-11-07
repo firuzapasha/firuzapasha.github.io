@@ -1,0 +1,294 @@
+{
+  "label": {
+    "en": "Experience",
+    "de": "Erfahrung"
+  },
+  "heading": {
+    "en": "Where I've\n*worked*",
+    "de": "Berufliche\n*Stationen*"
+  },
+  "jobs": [
+    {
+      "years": {
+        "en": "2022 — Now",
+        "de": "2022 — heute"
+      },
+      "role": "Senior Graphic Designer",
+      "company": "MPAY",
+      "place": {
+        "en": "Remote",
+        "de": "Remote"
+      },
+      "text": {
+        "en": "Impactful visuals across branding, social media, print and digital, specialising in 3D motion, 2D animation and dynamic storytelling. Motion graphics, print materials and brand experiences with the wider team.",
+        "de": "Wirkungsvolle Visuals für Branding, Social Media, Print und Digital, mit Schwerpunkt auf 3D-Motion, 2D-Animation und Storytelling. Motion Graphics, Printmaterialien und Markenerlebnisse im Team."
+      }
+    },
+    {
+      "years": {
+        "en": "2022 — Now",
+        "de": "2022 — heute"
+      },
+      "role": "Senior Graphic Designer",
+      "company": "Payriff",
+      "place": {
+        "en": "Remote",
+        "de": "Remote"
+      },
+      "text": {
+        "en": "Graphic and motion design at a B2B fintech startup: branding, marketing materials and 2D/3D animation for brand communication and product presentations.",
+        "de": "Grafik- und Motion-Design bei einem B2B-Fintech-Start-up: Branding, Marketingmaterialien und 2D/3D-Animationen für Markenkommunikation und Produktpräsentationen."
+      }
+    },
+    {
+      "years": {
+        "en": "2018 — 2023",
+        "de": "2018 — 2023"
+      },
+      "role": "Senior Graphic / Motion Designer",
+      "company": "Unibank",
+      "place": {
+        "en": "Azerbaijan",
+        "de": "Aserbaidschan"
+      },
+      "text": {
+        "en": "Branding, print materials and 2D/3D motion graphics for corporate communications and marketing, keeping the brand consistent across digital and print.",
+        "de": "Branding, Printmaterialien und 2D/3D-Motion-Graphics für Unternehmenskommunikation und Marketing – mit einheitlichem Markenauftritt in Digital und Print."
+      }
+    },
+    {
+      "years": {
+        "en": "2020 — 2022",
+        "de": "2020 — 2022"
+      },
+      "role": "Graphic Designer",
+      "company": "Spendonate",
+      "place": {
+        "en": "Freelance",
+        "de": "Freelance"
+      },
+      "text": {
+        "en": "Branding and digital content for a global startup, consistent across every platform.",
+        "de": "Branding und digitale Inhalte für ein globales Start-up, konsistent über alle Plattformen."
+      }
+    },
+    {
+      "years": {
+        "en": "2019 — 2022",
+        "de": "2019 — 2022"
+      },
+      "role": "Web, UX & UI Designer",
+      "company": "Timesoft",
+      "place": {
+        "en": "Freelance",
+        "de": "Freelance"
+      },
+      "text": {
+        "en": "Web and mobile interfaces focused on usability, including a CRM system built for HR teams.",
+        "de": "Web- und Mobile-Interfaces mit Fokus auf Usability, darunter ein CRM-System für HR-Teams."
+      }
+    },
+    {
+      "years": {
+        "en": "2018",
+        "de": "2018"
+      },
+      "role": "Graphic, UX & UI Designer",
+      "company": "ZNA Agency",
+      "place": {
+        "en": "USA · Remote",
+        "de": "USA · Remote"
+      },
+      "text": {
+        "en": "Visuals and interfaces that strengthened brand identity across web and mobile.",
+        "de": "Visuals und Interfaces, die die Markenidentität im Web und mobil gestärkt haben."
+      }
+    },
+    {
+      "years": {
+        "en": "2018",
+        "de": "2018"
+      },
+      "role": "Graphic, UX & UI Designer",
+      "company": "Web Coder",
+      "place": {
+        "en": "Azerbaijan",
+        "de": "Aserbaidschan"
+      },
+      "text": {
+        "en": "Designs and interfaces for a range of clients, including government projects.",
+        "de": "Designs und Interfaces für verschiedene Kunden, darunter Regierungsprojekte."
+      }
+    },
+    {
+      "years": {
+        "en": "2017",
+        "de": "2017"
+      },
+      "role": "Junior Graphic, UX & UI Designer",
+      "company": "Knexel Technologies",
+      "place": {
+        "en": "Azerbaijan",
+        "de": "Aserbaidschan"
+      },
+      "text": {
+        "en": "Visual design and UI for web and mobile products.",
+        "de": "Visuelles Design und UI für Web- und Mobile-Produkte."
+      }
+    },
+    {
+      "years": {
+        "en": "2017",
+        "de": "2017"
+      },
+      "role": "Graphic Designer",
+      "company": "Aile TV",
+      "place": {
+        "en": "Freelance",
+        "de": "Freelance"
+      },
+      "text": {
+        "en": "Print and social media designs for a TV and internet provider.",
+        "de": "Print- und Social-Media-Designs für einen TV- und Internetanbieter."
+      }
+    }
+  ],
+  "education": [
+    {
+      "meta": {
+        "en": "2023 — 2024 · Coders, Azerbaijan",
+        "de": "2023 — 2024 · Coders, Aserbaidschan"
+      },
+      "title": {
+        "en": "Back-end Python Developer",
+        "de": "Back-end-Entwicklung mit Python"
+      },
+      "text": {
+        "en": "Django, Flask, databases, APIs and deployment.",
+        "de": "Django, Flask, Datenbanken, APIs und Deployment."
+      }
+    },
+    {
+      "meta": {
+        "en": "2022 — 2023 · Code Academy, Azerbaijan",
+        "de": "2022 — 2023 · Code Academy, Aserbaidschan"
+      },
+      "title": {
+        "en": "Game Design & Development",
+        "de": "Game Design & Entwicklung"
+      },
+      "text": {
+        "en": "Game art, level design and 3D in Unity, Unreal and Blender.",
+        "de": "Game Art, Leveldesign und 3D mit Unity, Unreal und Blender."
+      }
+    },
+    {
+      "meta": {
+        "en": "2012 — 2016 · Azerbaijan State University of Economics",
+        "de": "2012 — 2016 · Staatliche Wirtschaftsuniversität Aserbaidschan"
+      },
+      "title": {
+        "en": "Bachelor, General Economy",
+        "de": "Bachelor, Wirtschaftswissenschaften"
+      },
+      "text": {
+        "en": "Economics, finance and business strategy.",
+        "de": "Volkswirtschaft, Finanzen und Unternehmensstrategie."
+      }
+    }
+  ],
+  "tools_label": {
+    "en": "Toolkit",
+    "de": "Werkzeuge"
+  },
+  "tools_heading": {
+    "en": "Tools I work with every day",
+    "de": "Tools, mit denen ich täglich arbeite"
+  },
+  "tools": [
+    "Photoshop",
+    "Illustrator",
+    "InDesign",
+    "After Effects",
+    "Premiere Pro",
+    "Lightroom",
+    "Audition",
+    "Blender",
+    "Figma",
+    "Procreate",
+    "Adobe Firefly",
+    "Midjourney",
+    "DALL·E",
+    "Runway ML",
+    "Unity",
+    "FontLab",
+    "Miro",
+    "Notion",
+    "Trello"
+  ],
+  "languages_label": {
+    "en": "Languages",
+    "de": "Sprachen"
+  },
+  "languages_heading": {
+    "en": "I speak",
+    "de": "Ich spreche"
+  },
+  "languages": [
+    {
+      "name": {
+        "en": "Azerbaijani",
+        "de": "Aserbaidschanisch"
+      },
+      "level": {
+        "en": "Native",
+        "de": "Muttersprache"
+      },
+      "dots": 5
+    },
+    {
+      "name": {
+        "en": "Turkish",
+        "de": "Türkisch"
+      },
+      "level": {
+        "en": "Native",
+        "de": "Muttersprache"
+      },
+      "dots": 5
+    },
+    {
+      "name": {
+        "en": "English",
+        "de": "Englisch"
+      },
+      "level": {
+        "en": "Upper-intermediate",
+        "de": "Fortgeschritten"
+      },
+      "dots": 4
+    },
+    {
+      "name": {
+        "en": "German",
+        "de": "Deutsch"
+      },
+      "level": {
+        "en": "B1",
+        "de": "B1"
+      },
+      "dots": 3
+    },
+    {
+      "name": {
+        "en": "Russian",
+        "de": "Russisch"
+      },
+      "level": {
+        "en": "Basic",
+        "de": "Grundkenntnisse"
+      },
+      "dots": 1
+    }
+  ]
+}

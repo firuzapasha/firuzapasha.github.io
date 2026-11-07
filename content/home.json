@@ -1,0 +1,164 @@
+{
+  "hero_intro": {
+    "en": "Senior Graphic & Motion Designer with 9 years of turning brands into visuals people stop scrolling for.",
+    "de": "Senior Graphic & Motion Designerin mit 9 Jahren Erfahrung. Ich mache aus Marken Visuals, bei denen man aufhört zu scrollen."
+  },
+  "hero_prefix": {
+    "en": "I design",
+    "de": "Ich gestalte"
+  },
+  "hero_words": {
+    "en": [
+      "brand identities",
+      "social campaigns",
+      "3D motion",
+      "print",
+      "ad creatives"
+    ],
+    "de": [
+      "Markenauftritte",
+      "Social-Kampagnen",
+      "3D-Motion",
+      "Printmedien",
+      "Werbeanzeigen"
+    ]
+  },
+  "marquee": {
+    "en": [
+      "Branding",
+      "Social Media",
+      "3D Motion",
+      "2D Animation",
+      "Print",
+      "Paid Social",
+      "AI-assisted design"
+    ],
+    "de": [
+      "Branding",
+      "Social Media",
+      "3D-Motion",
+      "2D-Animation",
+      "Print",
+      "Paid Social",
+      "KI-gestütztes Design"
+    ]
+  },
+  "work_label": {
+    "en": "Selected work",
+    "de": "Ausgewählte Arbeiten"
+  },
+  "work_heading": {
+    "en": "Work that\n*moves* brands.",
+    "de": "Arbeiten, die\nMarken *bewegen.*"
+  },
+  "about_label": {
+    "en": "About",
+    "de": "Über mich"
+  },
+  "about_big": {
+    "en": "I'm a graphic & motion designer who loves the moment a static idea starts to *move.* In nine years I've created visuals for 50+ brands — banks, fintechs, startups and agencies — from social campaigns and 3D motion to print.",
+    "de": "Ich bin Grafik- & Motion-Designerin und liebe den Moment, in dem eine statische Idee anfängt, sich zu *bewegen.* In neun Jahren habe ich Visuals für über 50 Marken gestaltet – Banken, Fintechs, Start-ups und Agenturen – von Social-Kampagnen über 3D-Motion bis Print."
+  },
+  "about_p1": {
+    "en": "In-house, I've led visual work for MPAY, Payriff and Unibank: campaign visuals and paid-social creatives, 2D/3D animation, video presentations and print — always on-brand, always on deadline.",
+    "de": "Inhouse habe ich die visuelle Arbeit für MPAY, Payriff und Unibank verantwortet: Kampagnen-Visuals und Paid-Social-Creatives, 2D/3D-Animationen, Videopräsentationen und Print – immer markenkonform, immer pünktlich."
+  },
+  "about_p2": {
+    "en": "As a freelancer I've worked with dozens of brands on branding, social media and print. I'm at home in Adobe Creative Suite, Blender and AI-assisted workflows, and comfortable with structured processes and tight deadlines.",
+    "de": "Als Freelancerin habe ich mit Dutzenden Marken in Branding, Social Media und Print gearbeitet. Ich bin zu Hause in der Adobe Creative Suite, in Blender und in KI-gestützten Workflows – und arbeite gern strukturiert, auch bei engen Deadlines."
+  },
+  "stats": [
+    {
+      "number": 9,
+      "suffix": "+",
+      "label": {
+        "en": "years in design",
+        "de": "Jahre im Design"
+      }
+    },
+    {
+      "number": 50,
+      "suffix": "+",
+      "label": {
+        "en": "brands & clients",
+        "de": "Marken & Kunden"
+      }
+    },
+    {
+      "number": 5,
+      "suffix": "",
+      "label": {
+        "en": "languages spoken",
+        "de": "Sprachen"
+      }
+    }
+  ],
+  "services_label": {
+    "en": "What I do",
+    "de": "Was ich mache"
+  },
+  "services_heading": {
+    "en": "Services &\n*specialities*",
+    "de": "Leistungen &\n*Schwerpunkte*"
+  },
+  "services": [
+    {
+      "title": {
+        "en": "Brand *identity*",
+        "de": "Corporate *Design*"
+      },
+      "text": {
+        "en": "Logos, brand guidelines and visual systems that stay consistent across every touchpoint.",
+        "de": "Logos, Brand Guidelines und visuelle Systeme, die an jedem Touchpoint konsistent bleiben."
+      }
+    },
+    {
+      "title": {
+        "en": "Social & *paid social*",
+        "de": "Social & *Paid Social*"
+      },
+      "text": {
+        "en": "Campaign visuals and ad creatives built to brand guidelines and adapted for each audience.",
+        "de": "Kampagnen-Visuals und Ad-Creatives nach Brand Guidelines – passend für jede Zielgruppe."
+      }
+    },
+    {
+      "title": {
+        "en": "3D & *motion*",
+        "de": "3D & *Motion*"
+      },
+      "text": {
+        "en": "3D posts, 2D animation and video presentations in Blender, After Effects and Premiere.",
+        "de": "3D-Posts, 2D-Animationen und Videopräsentationen mit Blender, After Effects und Premiere."
+      }
+    },
+    {
+      "title": {
+        "en": "Print *design*",
+        "de": "Print *Design*"
+      },
+      "text": {
+        "en": "Brochures, posters, cards and in-branch materials, ready for production.",
+        "de": "Broschüren, Plakate, Karten und Materialien für Filialen – druckfertig."
+      }
+    },
+    {
+      "title": {
+        "en": "AI-assisted *design*",
+        "de": "KI-gestütztes *Design*"
+      },
+      "text": {
+        "en": "Faster concepts and visuals with Firefly, Midjourney and Runway — always refined by hand.",
+        "de": "Schnellere Konzepte und Visuals mit Firefly, Midjourney und Runway – immer von Hand verfeinert."
+      }
+    }
+  ],
+  "contact_label": {
+    "en": "Get in touch",
+    "de": "Kontakt"
+  },
+  "contact_heading": {
+    "en": "Let's make\nsomething *that*\n*moves.*",
+    "de": "Lass uns\ngemeinsam\netwas *bewegen.*"
+  }
+}

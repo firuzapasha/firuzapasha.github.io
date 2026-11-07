@@ -1,0 +1,53 @@
+{
+  "first_name": "Firuza",
+  "last_name": {
+    "en": "Pashazada",
+    "de": "Pashazade"
+  },
+  "photo": "/images/uploads/firuza.jpg",
+  "photo_sticker": {
+    "en": "Hi, I'm *Firuza* 👋\nbased in Germany",
+    "de": "Hallo, ich bin *Firuza* 👋\naus Lahr"
+  },
+  "header_status": {
+    "en": "Open to freelance & full-time",
+    "de": "Gültige Arbeitserlaubnis · Offen für Freelance & Festanstellung"
+  },
+  "show_available": true,
+  "available_badge": {
+    "en": "Available for new projects",
+    "de": "Verfügbar für neue Projekte"
+  },
+  "mobile_badge": {
+    "en": "",
+    "de": "✓ Gültige Arbeitserlaubnis"
+  },
+  "email": "firuze.pasa@gmail.com",
+  "phone": "",
+  "location": {
+    "en": "Lahr, Germany · Valid work permit",
+    "de": "Lahr, Deutschland"
+  },
+  "socials": [
+    {
+      "label": "Behance",
+      "url": "https://www.behance.net/firuzapasha"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/firuzapasha"
+    },
+    {
+      "label": "Dribbble",
+      "url": "https://dribbble.com/firuzapasha"
+    }
+  ],
+  "page_title": {
+    "en": "Firuza Pashazada — Graphic & Motion Designer",
+    "de": "Firuza Pashazade — Grafik- & Motion-Designerin"
+  },
+  "page_description": {
+    "en": "Senior Graphic & Motion Designer — branding, social media, 3D motion and print. Based in Lahr, Germany.",
+    "de": "Senior Graphic & Motion Designerin — Branding, Social Media, 3D-Motion und Print. Lahr, Deutschland."
+  }
+}
