@@ -503,6 +503,41 @@ body.r-work #view-work{display:block}
 .phone-line{margin-top:14px;font-size:clamp(18px,2vw,26px);color:rgba(243,239,232,.8);letter-spacing:-.02em}
 .load-err{position:fixed;inset:auto 20px 20px 20px;z-index:101;background:var(--ink);color:var(--paper);padding:16px 20px;border-radius:14px;font-size:14px;display:none}
 
+/* selected work: compact grid (overrides the large staggered layout) */
+.feat{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(26px,3vw,44px) clamp(14px,1.8vw,26px)}
+.feat .card:nth-child(n){grid-column:auto;margin-top:0}
+.feat .card:nth-child(n) .media{aspect-ratio:4/3}
+.feat .card .media{border-radius:14px}
+.feat .card .meta{padding-top:12px}
+.feat .card .t{font-size:clamp(15px,1.15vw,17px);font-weight:500}
+.feat .card .c{font-size:13px;margin-top:2px}
+.feat .card .num{font-size:12px;padding-top:3px}
+.feat .card .go{width:36px;height:36px;font-size:14px;right:10px;top:10px}
+.feat .media .tag{font-size:11px;padding:5px 10px;left:10px;top:10px}
+.feat .card.rv:nth-child(3n+2){transition-delay:.08s}
+.feat .card.rv:nth-child(3n){transition-delay:.16s}
+#selected .sec-head{margin-bottom:clamp(28px,3.5vw,48px)}
+#selected .see-all{margin-top:clamp(40px,5vw,64px)}
+@media (max-width:1000px){.feat{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){
+  .feat{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 6px;scroll-padding:0 var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .feat::-webkit-scrollbar{display:none}
+  .feat .card:nth-child(n){flex:0 0 76%;scroll-snap-align:start}
+  .feat .card.rv{transition-delay:0s!important}
+}
+/* drawn covers scale with their card */
+.cv{container-type:size}
+.cv .mono{font-size:52cqw}
+.cv .pp b{font-size:13cqw}
+.cv .pp.p2 .big{font-size:22cqw}
+.cv .pp small{font-size:max(6px,2cqw)}
+.cv .play::after{border-left-width:4.5cqw;border-top-width:2.8cqw;border-bottom-width:2.8cqw}
+.cv .tor{border-width:3cqw}
+.cv .lg i{border-width:6cqw}
+.cv .heart{width:10cqw;font-size:4.5cqw}
+.cv .br .bar{height:4.5cqw}
+.cv .swatches i{width:3.5cqw}
+
 /* project page */
 #view-project{display:none;min-height:100vh;padding-top:120px}
 body.r-project #view-home,body.r-project #view-work{display:none}
