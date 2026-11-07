@@ -23,16 +23,7 @@
         "en": "",
         "de": ""
       },
-      "gallery": [
-        {
-          "image": "https://picsum.photos/id/49/1920/1280.webp",
-          "caption": {
-            "en": "Social media",
-            "de": "Social media"
-          },
-          "wide": false
-        }
-      ]
+      "gallery": []
     },
     {
       "title": {

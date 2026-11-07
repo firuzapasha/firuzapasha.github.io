@@ -171,6 +171,14 @@ textarea.inp.mdta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-s
 .drop{outline:2px dashed var(--accent);outline-offset:4px}
 .pend{position:absolute;left:6px;top:6px;font-size:10.5px;font-weight:600;background:var(--accent);color:#fff;border-radius:6px;padding:2px 6px}
 
+/* videos inside covers */
+.cv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* file field */
+.filebox{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px dashed var(--line-2);border-radius:12px;padding:12px}
+.filebox .fico{width:40px;height:48px;border-radius:6px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;flex:none}
+.filebox .fname{flex:1;min-width:140px;font-weight:500;word-break:break-all}
+.filebox .fname small{display:block;color:var(--muted);font-weight:400;font-size:12.5px}
+.imgf .thumb video,.gtile .gi video{width:100%;height:100%;object-fit:cover;display:block}
 /* markdown */
 .md-bar{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
 .md-bar button{height:30px;min-width:30px;padding:0 9px;border-radius:8px;border:1px solid var(--line-2);background:#fff;font-size:13px;font-weight:600}
@@ -228,7 +236,7 @@ textarea.inp.mdta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-s
 .swatch{display:flex;gap:8px;flex-wrap:wrap}
 .swatch button{width:34px;height:34px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line-2);transition:box-shadow .2s}
 .swatch button.on{box-shadow:0 0 0 2px var(--ink)}
-.cover-big{width:100%;max-width:520px;aspect-ratio:16/10;border-radius:14px;overflow:hidden;position:relative;border:1px solid var(--line)}
+.cover-big{width:100%;max-width:440px;aspect-ratio:4/3;border-radius:14px;overflow:hidden;position:relative;border:1px solid var(--line)}
 .cover-big .cv,.cover-big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* gallery */
@@ -558,23 +566,43 @@ async function processImage(file, maxSide=2400){
     blob = await new Promise(r=>c.toBlob(r,'image/jpeg',.86)); return {blob, ext:'jpg'};
   } catch(e){ return {blob:file, ext:(file.name.split('.').pop()||'jpg').toLowerCase()} }
 }
-async function addImage(file){
-  if (!file || !file.type.startsWith('image/')) { toast('Please choose an image file.','err'); return null }
+const MAX_VIDEO_MB = 40, MAX_FILE_MB = 20;
+const isVid = p => /\.(mp4|webm|mov|m4v)(\?|$)/i.test(p||'');
+const mediaEl = (p) => isVid(p) ? h('video',{src: imgSrc(p), autoplay:true, muted:true, loop:true, playsinline:true}) : h('img',{src: imgSrc(p), alt:''});
+const mediaHTML = (p) => isVid(p) ? `<video src="${esc(imgSrc(p))}" autoplay muted loop playsinline></video>` : `<img src="${esc(imgSrc(p))}" alt="">`;
+async function addImage(file, allowVideo){
+  if (!file) return null;
+  const base = slug(file.name.replace(/\.[^.]+$/,'')) + '-' + Date.now().toString(36);
+  if (allowVideo && file.type.startsWith('video/')){
+    if (file.size > MAX_VIDEO_MB*1024*1024){ toast(`This video is ${(file.size/1048576).toFixed(0)} MB. Please export it under ${MAX_VIDEO_MB} MB (e.g. 1080p MP4, about 10–20 seconds).`,'err',null,9000); return null }
+    const ext = (file.name.split('.').pop()||'mp4').toLowerCase().replace('quicktime','mov');
+    const path = `/images/uploads/${base}.${ext}`;
+    PENDING[path] = file; PREVIEW[path] = URL.createObjectURL(file); return path;
+  }
+  if (!file.type.startsWith('image/')) { toast(allowVideo ? 'Please choose an image or a video.' : 'Please choose an image file.','err'); return null }
   const {blob, ext} = await processImage(file);
-  const path = `/images/uploads/${slug(file.name.replace(/\.[^.]+$/,''))}-${Date.now().toString(36)}.${ext}`;
+  const path = `/images/uploads/${base}.${ext}`;
   PENDING[path] = blob; PREVIEW[path] = URL.createObjectURL(blob);
   return path;
 }
-function pickFiles(multiple){
+async function addFile(file){
+  if (!file) return null;
+  if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) { toast('Please choose a PDF file.','err'); return null }
+  if (file.size > MAX_FILE_MB*1024*1024){ toast(`This PDF is too big (max ${MAX_FILE_MB} MB).`,'err'); return null }
+  const path = `/files/${slug(file.name.replace(/\.[^.]+$/,''))}-${Date.now().toString(36)}.pdf`;
+  PENDING[path] = file; PREVIEW[path] = URL.createObjectURL(file);
+  return path;
+}
+function pickFiles(multiple, accept='image/*'){
   return new Promise(res=>{
-    const inp = $('#filePick'); inp.multiple = !!multiple; inp.value = '';
+    const inp = $('#filePick'); inp.multiple = !!multiple; inp.accept = accept; inp.value = '';
     inp.onchange = () => res([...inp.files]); inp.click();
   });
 }
 
 /* ================== COVERS (same as website) ================== */
 function cover(p){
-  if (p.cover_image) return `<div class="cv"><img src="${esc(imgSrc(p.cover_image))}" alt=""></div>`;
+  if (p.cover_image) return `<div class="cv">${mediaHTML(p.cover_image)}</div>`;
   const tc = 'cv t-'+(p.cover_color||'sand'), g = esc((p.cover_letter||tr(p.title)[0]||'•').slice(0,2)), cl = esc(p.client||'');
   switch(p.cover_style){
    case 'posters': return `<div class="${tc}"><div class="pp p1"><small>${cl}</small><div class="bars"><i></i><i></i><i style="width:60%"></i></div></div><div class="pp p2"><small>2 / 3</small><span class="big">${g}</span></div><div class="pp p3"><b>${g}.</b><small>${cl}</small><span class="circ"></span></div></div>`;
@@ -691,13 +719,31 @@ function F(def, obj){
   }
   else if (type==='image'){
     const thumb = h('div',{class:'thumb', style:{'--ar': def.ar||'4/3'}});
-    const paint = () => { thumb.innerHTML=''; thumb.classList.toggle('has', !!obj[key]); if (obj[key]) { thumb.append(h('img',{src: imgSrc(obj[key]), alt:''})); if (PENDING[obj[key]]) thumb.append(h('span',{class:'pend'},'New')); } else thumb.append(h('span',{}, 'No image')); rm.classList.toggle('hidden', !obj[key]); };
-    const set = async file => { const p = await addImage(file); if (p){ obj[key]=p; paint(); changed(); def.onchange && def.onchange(); } };
+    const paint = () => { thumb.innerHTML=''; thumb.classList.toggle('has', !!obj[key]); if (obj[key]) { thumb.append(mediaEl(obj[key])); if (PENDING[obj[key]]) thumb.append(h('span',{class:'pend'},'New')); } else thumb.append(h('span',{}, 'No image')); rm.classList.toggle('hidden', !obj[key]); };
+    const set = async file => { const p = await addImage(file, def.video); if (p){ obj[key]=p; paint(); changed(); def.onchange && def.onchange(); } };
     const rm = h('button',{type:'button', class:'btn btn-ghost btn-sm', onclick:()=>{ obj[key]=''; paint(); changed(); def.onchange && def.onchange(); }}, 'Remove');
-    const acts = h('div',{class:'acts'}, h('button',{type:'button', class:'btn btn-line btn-sm', onclick: async ()=>{ const [f] = await pickFiles(false); if (f) set(f); }}, ic('img'), obj[key] ? 'Replace image' : 'Upload image'), rm, def.hint ? h('div',{class:'hint', style:{maxWidth:'260px'}}, def.hint) : null);
+    const acts = h('div',{class:'acts'}, h('button',{type:'button', class:'btn btn-line btn-sm', onclick: async ()=>{ const [f] = await pickFiles(false, def.video ? 'image/*,video/mp4,video/webm,video/quicktime' : 'image/*'); if (f) set(f); }}, ic('img'), obj[key] ? 'Replace' : (def.video ? 'Upload image or video' : 'Upload image')), rm, def.hint ? h('div',{class:'hint', style:{maxWidth:'260px'}}, def.hint) : null);
     const box = h('div',{class:'imgf'}, thumb, acts);
-    dropZone(box, files => files[0] && set(files[0]));
+    dropZone(box, files => files[0] && set(files[0]), def.video);
     paint(); wrap.append(label(def.label), box);
+    return wrap;
+  }
+  else if (type==='file'){
+    const o = bi ? biObj(obj,key) : obj, k = bi ? LANG : key;
+    const info = h('div',{class:'filebox'});
+    const paint = () => {
+      info.innerHTML = '';
+      const v = o[k];
+      if (v){
+        info.append(h('span',{class:'fico'},'PDF'), h('div',{class:'fname'}, v.split('/').pop(), PENDING[v] ? h('small',{},'New — goes live when you publish') : h('small',{}, 'Live on your site')),
+          h('a',{class:'btn btn-line btn-sm', href: imgSrc(v), target:'_blank', rel:'noopener'}, 'Open'),
+          h('button',{type:'button', class:'btn btn-ghost btn-sm', onclick:()=>{ o[k]=''; paint(); changed(); }}, 'Remove'));
+      } else info.append(h('span',{class:'hint'}, bi && LANG==='de' && o.en ? 'No German file — the English one is used.' : 'No file yet — the download button stays hidden.'));
+      info.append(h('button',{type:'button', class:'btn btn-dark btn-sm', onclick: async ()=>{ const [f] = await pickFiles(false,'application/pdf,.pdf'); if (f){ const p = await addFile(f); if (p){ o[k]=p; paint(); changed(); } } }}, ic('plus'), v ? 'Replace PDF' : 'Upload PDF'));
+    };
+    dropZone(info, files => {}, false, async raw => { const f = raw[0]; if (f){ const p = await addFile(f); if (p){ o[k]=p; paint(); changed(); } } });
+    paint(); wrap.append(label(def.label,{bi}), info);
+    if (hint) wrap.append(h('div',{class:'hint'}, hint));
     return wrap;
   }
   else if (type==='list'){
@@ -725,10 +771,10 @@ function F(def, obj){
   if (hint) wrap.append(h('div',{class:'hint'}, hint));
   return wrap;
 }
-function dropZone(el, onFiles){
+function dropZone(el, onFiles, allowVideo, onRaw){
   el.addEventListener('dragover', e=>{ e.preventDefault(); el.classList.add('drop') });
   el.addEventListener('dragleave', ()=>el.classList.remove('drop'));
-  el.addEventListener('drop', e=>{ e.preventDefault(); el.classList.remove('drop'); onFiles([...e.dataTransfer.files].filter(f=>f.type.startsWith('image/'))) });
+  el.addEventListener('drop', e=>{ e.preventDefault(); el.classList.remove('drop'); const all=[...e.dataTransfer.files]; if (onRaw) return onRaw(all); onFiles(all.filter(f=>f.type.startsWith('image/') || (allowVideo && f.type.startsWith('video/')))) });
 }
 function panel(title, sub, kids, open=true){
   const p = h('section',{class:'panel'+(open?'':' closed')},
@@ -825,7 +871,7 @@ function viewProject(i){
   drawn.append(h('div',{class:'lbl'},'Or use a drawn cover'), stylesBox, h('div',{class:'lbl', style:{marginTop:'6px'}},'Colour'), sw, h('div',{style:{maxWidth:'200px', marginTop:'6px'}}, F({key:'cover_letter', label:'Letter on the cover', ph:'e.g. R', onchange:()=>{ paintStyles(); refreshHead(); }}, p)));
   const coverPanel = panel('Cover', 'Shown on the project card and at the top of the project page', [
     coverBig,
-    F({key:'cover_image', label:'Cover image', type:'image', ar:'16/10', hint:'Big images are resized automatically.', onchange:()=>{ drawn.classList.toggle('hidden', !!p.cover_image); refreshHead(); }}, p),
+    F({key:'cover_image', label:'Cover image or video', type:'image', video:true, ar:'4/3', hint:'Use 4:3 (e.g. 1600 × 1200 px). Big images are resized automatically. Videos: MP4, short loop, under 40 MB.', onchange:()=>{ drawn.classList.toggle('hidden', !!p.cover_image); refreshHead(); }}, p),
     drawn,
   ]);
   const story = panel('Text', 'What visitors read on the project page', [
@@ -842,17 +888,17 @@ function viewProject(i){
       const capIn = h('input',{class:'inp', placeholder: LANG==='de' && cap.en ? cap.en : 'Caption (optional)', style:{padding:'8px 10px', fontSize:'14px'}}); capIn.value = cap[LANG]||'';
       capIn.addEventListener('input', ()=>{ cap[LANG]=capIn.value; changed() });
       const wide = h('button',{type:'button', class:'btn btn-sm '+(g.wide?'btn-dark':'btn-line'), title:'Show full width on the page', onclick:()=>{ g.wide=!g.wide; paintGal(); changed() }}, g.wide?'Full width':'Half width');
-      const gi = h('div',{class:'gi'}, h('img',{src: imgSrc(g.image), alt:''}), PENDING[g.image] ? h('span',{class:'pend'},'New') : null);
+      const gi = h('div',{class:'gi'}, mediaEl(g.image), PENDING[g.image] ? h('span',{class:'pend'},'New') : null, isVid(g.image) ? h('span',{class:'pend', style:{left:'auto', right:'6px', background:'var(--ink)'}},'Video') : null);
       gal.append(h('div',{class:'gtile'}, gi, h('div',{class:'gb'}, capIn, h('div',{class:'gacts'}, wide, h('span',{class:'sp'}),
         h('button',{type:'button', class:'icon-btn', title:'Move earlier', disabled:i===0, onclick:()=>{ [p.gallery[i-1],p.gallery[i]]=[p.gallery[i],p.gallery[i-1]]; paintGal(); changed() }}, ic('up')),
         h('button',{type:'button', class:'icon-btn', title:'Move later', disabled:i===p.gallery.length-1, onclick:()=>{ [p.gallery[i+1],p.gallery[i]]=[p.gallery[i],p.gallery[i+1]]; paintGal(); changed() }}, ic('down')),
         h('button',{type:'button', class:'icon-btn', title:'Remove', onclick:()=>{ p.gallery.splice(i,1); paintGal(); changed() }}, ic('trash'))))));
     });
-    const add = h('button',{type:'button', class:'gadd', onclick: async ()=>{ addFiles(await pickFiles(true)) }}, h('span',{class:'plus', style:{width:'40px',height:'40px',borderRadius:'50%',background:'var(--ink)',color:'var(--paper)',display:'grid',placeItems:'center',fontSize:'22px',margin:'0 auto'}},'+'), 'Add images', h('small',{class:'hint'},'or drop them here'));
+    const add = h('button',{type:'button', class:'gadd', onclick: async ()=>{ addFiles(await pickFiles(true,'image/*,video/mp4,video/webm,video/quicktime')) }}, h('span',{class:'plus', style:{width:'40px',height:'40px',borderRadius:'50%',background:'var(--ink)',color:'var(--paper)',display:'grid',placeItems:'center',fontSize:'22px',margin:'0 auto'}},'+'), 'Add images or videos', h('small',{class:'hint'},'GIF and MP4 work too — or drop files here'));
     gal.append(add);
   };
-  const addFiles = async files => { for (const f of files){ const path = await addImage(f); if (path) p.gallery.push({image:path, caption:{en:'',de:''}, wide:false}); } paintGal(); changed(); };
-  dropZone(gal, addFiles);
+  const addFiles = async files => { for (const f of files){ const path = await addImage(f, true); if (path) p.gallery.push({image:path, caption:{en:'',de:''}, wide:false}); } paintGal(); changed(); };
+  dropZone(gal, addFiles, true);
   paintGal();
   const galPanel = panel('Gallery', 'Images shown on the project page. Visitors can tap them to view full screen.', [gal]);
   const danger = h('div',{style:{display:'flex', gap:'10px', flexWrap:'wrap', marginTop:'8px'}},
@@ -922,6 +968,9 @@ function viewProfile(){
       F(bi('location','Footer line',{ph:'Lahr, Germany'}), G),
       F({key:'socials', label:'Links', type:'list', one:'link', summary: s=>h('span',{}, s.label||'New link', h('small',{}, s.url||'')), make:()=>({label:'', url:'https://'}),
         fields:[ h_row2([{key:'label', label:'Name', ph:'Instagram'}, {key:'url', label:'Link', type:'url', ph:'https://…'}]) ]}, G),
+    ]),
+    panel('CV', 'Shown as “Download CV” in the menu and contact section', [
+      F({key:'cv', label:'CV (PDF)', type:'file', bi:true, hint:'Switch EN / DE at the top to upload a German Lebenslauf as well. Tip: leave out your home address and phone number — this file is public.'}, G),
     ]),
     panel('Badges', 'Small labels at the top of the page', [
       F({key:'show_available', label:'Show the “available” badge', type:'toggle'}, G),
