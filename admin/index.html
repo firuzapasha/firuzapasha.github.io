@@ -404,7 +404,7 @@ textarea.inp.mdta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-s
 const REPO = (() => { const h = location.hostname; return h.endsWith('.github.io') ? h.split('.')[0] + '/' + h : 'firuzapasha/firuzapasha.github.io'; })();
 const BRANCH = 'main';
 const FILES = ['projects','home','experience','general'];
-const SITE = window.__SITE || (location.hostname.endsWith('.github.io') ? location.origin + '/' : 'https://' + REPO.split('/')[1] + '/');
+const SITE = window.__SITE || (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol==='file:' ? 'https://firuzapasha.com/' : location.origin + '/');
 const TOKEN_KEY = 'fp-admin-token', DRAFT_KEY = 'fp-admin-draft';
 const API = window.__GH_API || 'https://api.github.com';
 

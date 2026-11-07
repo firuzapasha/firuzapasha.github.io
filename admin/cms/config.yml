@@ -3,8 +3,8 @@ backend:
   name: github
   repo: firuzapasha/firuzapasha.github.io
   branch: main
-site_url: https://firuzapasha.github.io
-display_url: https://firuzapasha.github.io
+site_url: https://firuzapasha.com
+display_url: https://firuzapasha.com
 media_folder: images/uploads
 media_libraries:
   all:
