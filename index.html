@@ -546,8 +546,9 @@ body.r-work #view-work{display:block}
 
 /* about: keep the photo close to the text */
 .about-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2.4vw,32px);row-gap:40px}
-.portrait{grid-column:2 / span 4;justify-self:stretch;max-width:none}
-.about-text{grid-column:7 / span 6}
+.portrait{grid-column:2 / span 4;justify-self:start;width:100%;max-width:400px}
+.about-text{grid-column:7 / span 5}
+@media (max-width:1100px){.about-text{grid-column:7 / span 6}}
 @media (max-width:820px){.about-grid{grid-template-columns:1fr}.portrait,.about-text{grid-column:auto}.portrait{justify-self:start;max-width:320px}}
 
 /* project page */
