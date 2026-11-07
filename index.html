@@ -844,7 +844,8 @@ function renderLang(){
   $('langs').innerHTML = (X.languages||[]).map(l=>`<div class="lang"><div><b>${esc(tr(l.name))}</b><br><span>${esc(tr(l.level))}</span></div><div class="lvl">${[1,2,3,4,5].map(n=>`<i class="${n<=(+l.dots||0)?'f':''}"></i>`).join('')}</div></div>`).join('');
   // projects
   const feat = PROJECTS.filter(p=>p.featured);
-  $('feat').innerHTML = (feat.length?feat:PROJECTS.slice(0,6)).map((p,j)=>card(p,j,'rv in')).join('');
+  $('feat').innerHTML = feat.map((p,j)=>card(p,j,'rv in')).join('');
+  $('feat').style.display = feat.length ? '' : 'none';
   all.innerHTML = PROJECTS.map((p,i)=>card(p,i)).join('');
   $('workTitle').textContent = tr(P.page_title); $('total').textContent = PROJECTS.length;
   $('workIntro').innerHTML = rich(tr(P.page_intro));
