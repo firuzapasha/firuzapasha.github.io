@@ -142,7 +142,7 @@
       "client": "Unibank",
       "category": "print",
       "status": "published",
-      "featured": true,
+      "featured": false,
       "year": "",
       "cover_image": "",
       "cover_style": "print",
