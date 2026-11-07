@@ -6,6 +6,18 @@ backend:
 site_url: https://firuzapasha.github.io
 display_url: https://firuzapasha.github.io
 media_folder: images/uploads
+media_libraries:
+  all:
+    slugify_filename: true
+    max_file_size: 26214400
+    transformations:
+      raster_image:
+        format: webp
+        quality: 85
+        width: 2400
+        height: 2400
+  stock_assets:
+    providers: []
 public_folder: /images/uploads
 collections:
 - name: projects
