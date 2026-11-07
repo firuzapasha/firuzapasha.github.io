@@ -1,16 +1,4 @@
 {
-  "page_title": {
-    "en": "All work",
-    "de": "Arbeiten"
-  },
-  "page_intro": {
-    "en": "Branding, social media, 3D & motion, print and web projects.",
-    "de": "Branding, Social Media, 3D & Motion, Print und Web."
-  },
-  "more_text": {
-    "en": "There's more on *Behance.*",
-    "de": "Mehr gibt es auf *Behance.*"
-  },
   "items": [
     {
       "title": {
@@ -35,7 +23,16 @@
         "en": "",
         "de": ""
       },
-      "gallery": []
+      "gallery": [
+        {
+          "image": "https://picsum.photos/id/49/1920/1280.webp",
+          "caption": {
+            "en": "Social media",
+            "de": "Social media"
+          },
+          "wide": false
+        }
+      ]
     },
     {
       "title": {
@@ -312,5 +309,17 @@
       },
       "gallery": []
     }
-  ]
+  ],
+  "page_title": {
+    "en": "All work",
+    "de": "Arbeiten"
+  },
+  "page_intro": {
+    "en": "Branding, social media, 3D & motion, print and web projects.",
+    "de": "Branding, Social Media, 3D & Motion, Print und Web."
+  },
+  "more_text": {
+    "en": "There's more on *Behance.*",
+    "de": "Mehr gibt es auf *Behance.*"
+  }
 }
