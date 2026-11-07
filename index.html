@@ -1023,6 +1023,7 @@ const contentReady = loadContent().then(()=>{
 const counterDone = new Promise(res=>{
   if(reduce){ res(); return }
   const t0=performance.now(), D=1500;
+  setTimeout(res, D+900); // safety net: never wait for animation frames (they pause in background tabs)
   (function step(tm){ const k=Math.min(1,(tm-t0)/D), e=1-Math.pow(1-k,3); lc.textContent=Math.round(e*100); lb.style.transform=`scaleX(${e})`; if(k<1) requestAnimationFrame(step); else setTimeout(res,150) })(t0);
 });
 Promise.all([contentReady,counterDone]).then(()=>{
