@@ -312,5 +312,42 @@
   "more_text": {
     "en": "There's more on *Behance.*",
     "de": "Mehr gibt es auf *Behance.*"
-  }
+  },
+  "categories": [
+    {
+      "id": "social",
+      "name": {
+        "en": "Social Media",
+        "de": "Social Media"
+      }
+    },
+    {
+      "id": "motion",
+      "name": {
+        "en": "3D & Motion",
+        "de": "3D & Motion"
+      }
+    },
+    {
+      "id": "brand",
+      "name": {
+        "en": "Branding",
+        "de": "Branding"
+      }
+    },
+    {
+      "id": "print",
+      "name": {
+        "en": "Print",
+        "de": "Print"
+      }
+    },
+    {
+      "id": "web",
+      "name": {
+        "en": "Web & UI",
+        "de": "Web & UI"
+      }
+    }
+  ]
 }

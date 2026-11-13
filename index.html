@@ -857,7 +857,9 @@ const cover = p => {
   }
 };
 const dark = p => ['ink','coral'].includes(p.cover_color) && !p.cover_image;
-const catName = c => ui('cats')[c] || ui('cats').other;
+const catList = () => (C && Array.isArray(C.projects.categories)) ? C.projects.categories : null;
+const catName = c => { const l = catList(); if (l){ const f = l.find(x=>x.id===c); if (f) return tr(f.name) || ui('cats').other; } return ui('cats')[c] || ui('cats').other; };
+const catOrder = c => { const l = catList(); const i = l ? l.findIndex(x=>x.id===c) : Object.keys(UI.en.cats).indexOf(c); return i<0 ? 999 : i; };
 const card = (p,i,extra='') => `<a class="card ${extra}" href="#p-${p._slug}" data-cat="${esc(p.category||'other')}" data-i="${p._i}" data-cursor>
   <div class="media${p.cover_image?'':' t-'+esc(p.cover_color||'sand')}">${cover(p)}<span class="tag ${dark(p)?'dk':''}">${esc(catName(p.category))}</span><span class="go">↗</span></div>
   <div class="meta"><div class="t-wrap"><div class="t">${esc(tr(p.title))}</div><div class="c">${esc(p.client||'')}</div></div><span class="lcat">${esc(catName(p.category))}</span><span class="num">${String(i+1).padStart(2,'0')}</span><span class="larr">→</span></div></a>`;
@@ -959,7 +961,7 @@ function renderLang(){
   $('moreText').innerHTML = rich(tr(P.more_text));
   const be = (G.socials||[]).find(s=>/behance/i.test(s.url||'')); $('moreLink').href = be ? be.url : '#'; $('moreBox').style.display = be ? '' : 'none';
   const counts = PROJECTS.reduce((a,p)=>(a[p.category]=(a[p.category]||0)+1,a),{});
-  fl.innerHTML = `<button data-f="all">${ui('all')} <sup>${PROJECTS.length}</sup></button>` + Object.keys(counts).sort((a,b)=>Object.keys(UI.en.cats).indexOf(a)-Object.keys(UI.en.cats).indexOf(b)).map(k=>`<button data-f="${esc(k)}">${esc(catName(k))} <sup>${counts[k]}</sup></button>`).join('');
+  fl.innerHTML = `<button data-f="all">${ui('all')} <sup>${PROJECTS.length}</sup></button>` + Object.keys(counts).sort((a,b)=>catOrder(a)-catOrder(b)).map(k=>`<button data-f="${esc(k)}">${esc(catName(k))} <sup>${counts[k]}</sup></button>`).join('');
   if(curFilter!=='all' && !counts[curFilter]) curFilter='all';
   applyFilter(curFilter,false);
   // contact

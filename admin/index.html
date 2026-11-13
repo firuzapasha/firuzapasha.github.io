@@ -173,6 +173,12 @@ textarea.inp.mdta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-s
 
 /* videos inside covers */
 .cv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* categories */
+.cat-row{display:grid;grid-template-columns:1fr 1fr auto auto auto auto;gap:8px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 10px 10px 14px}
+.cat-in{display:grid;gap:5px}
+.cat-in .lbl{font-size:11.5px;color:var(--muted);font-weight:600}
+.cat-n{font-size:12.5px;color:var(--muted);white-space:nowrap;padding:0 6px 10px}
+@media (max-width:640px){.cat-row{grid-template-columns:1fr 1fr;}.cat-n{grid-column:1/-1;padding:0}}
 /* file field */
 .filebox{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px dashed var(--line-2);border-radius:12px;padding:12px}
 .filebox .fico{width:40px;height:48px;border-radius:6px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;flex:none}
@@ -616,8 +622,10 @@ function cover(p){
   }
 }
 function siteSlug(p){ const seen={}; let out=''; DATA.projects.items.filter(x=>x.status!=='archived').forEach(x=>{ let s=((x.title&&x.title.en)||tr(x.title)||'project').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'project'; if(seen[s]) s+='-'+(++seen[s]); else seen[s]=1; if(x===p) out=s; }); return out; }
-const CATS = [['social','Social Media'],['motion','3D & Motion'],['brand','Branding'],['print','Print'],['web','Web & UI'],['other','Other']];
-const catName = c => (CATS.find(x=>x[0]===c)||[0,'Other'])[1];
+const DEFAULT_CATS = [['social','Social Media'],['motion','3D & Motion'],['brand','Branding'],['print','Print'],['web','Web & UI']];
+function cats(){ const P = DATA.projects; if (!Array.isArray(P.categories)) P.categories = DEFAULT_CATS.map(([id,n])=>({id, name:{en:n, de:n}})); return P.categories; }
+const CATS_OPTS = () => cats().map(c=>[c.id, tr(c.name)||'Untitled']);
+const catName = c => { const f = (DATA && Array.isArray(DATA.projects.categories) ? DATA.projects.categories : DEFAULT_CATS.map(([id,n])=>({id,name:{en:n}}))).find(x=>x.id===c); return f ? (tr(f.name)||'Untitled') : 'No category'; };
 const STYLES = [['posters','Posters'],['phone','Phone'],['3d','3D'],['brand','Letter'],['logo','Logo'],['print','Print'],['motion','Motion'],['web','Website']];
 const COLORS = [['sand','#E6DED0'],['coral','#FF5A3C'],['ink','#161616'],['sage','#CBD5C0'],['lilac','#D9D3F5'],['sky','#CADCE8'],['butter','#F2E3A7'],['blush','#F4D6D0']];
 
@@ -831,13 +839,47 @@ function viewProjects(){
     if (!shown.length && projFilter!=='all') out.push(h('div',{class:'empty', style:{marginTop:'16px'}}, 'No projects here yet.'));
   }
   out.push(h('div',{style:{height:'28px'}}));
+  out.push(catPanel());
   out.push(panel('“All work” page', 'Title and texts on the page that lists all projects', [
     F(bi('page_title','Page title'), P), F(bi('page_intro','Intro text',{type:'textarea', rows:2}), P), F(bi('more_text','Text in the Behance box at the bottom',{hint:STAR}), P)
   ], false));
   return out;
 }
+let catsOpen = false;
+function catPanel(){
+  const list = cats(), items = DATA.projects.items;
+  const used = id => items.filter(p=>p.category===id).length;
+  const box = h('div',{class:'list'});
+  list.forEach((c,i)=>{
+    if (!c.name || typeof c.name!=='object') c.name = {en: String(c.name||''), de:''};
+    const en = h('input',{class:'inp', placeholder:'Name in English'}); en.value = c.name.en||'';
+    const de = h('input',{class:'inp', placeholder: c.name.en ? c.name.en+' (German)' : 'Name in German'}); de.value = c.name.de||'';
+    en.addEventListener('input', ()=>{ c.name.en = en.value; changed(); });
+    de.addEventListener('input', ()=>{ c.name.de = de.value; changed(); });
+    const n = used(c.id);
+    box.append(h('div',{class:'cat-row'},
+      h('div',{class:'cat-in'}, h('label',{class:'lbl'}, 'English'), en),
+      h('div',{class:'cat-in'}, h('label',{class:'lbl'}, 'Deutsch'), de),
+      h('span',{class:'cat-n', title:'Projects in this category'}, n + (n===1?' project':' projects')),
+      h('button',{type:'button', class:'icon-btn', title:'Move up', disabled:i===0, onclick:()=>{ [list[i-1],list[i]]=[list[i],list[i-1]]; changed(); render(); }}, ic('up')),
+      h('button',{type:'button', class:'icon-btn', title:'Move down', disabled:i===list.length-1, onclick:()=>{ [list[i+1],list[i]]=[list[i],list[i+1]]; changed(); render(); }}, ic('down')),
+      h('button',{type:'button', class:'icon-btn', title:'Delete category', onclick: async ()=>{
+        if (list.length===1){ toast('You need at least one category.','err'); return; }
+        const target = list.find(x=>x!==c);
+        const msg = n ? `${n} ${n===1?'project uses':'projects use'} “${tr(c.name)||'this category'}”. ${n===1?'It':'They'} will move to “${tr(target.name)}” — you can change that in each project.` : `“${tr(c.name)||'This category'}” isn't used by any project.`;
+        if (await confirmBox('Delete this category?', msg)){ items.forEach(p=>{ if(p.category===c.id) p.category = target.id; }); list.splice(i,1); changed(); render(); }
+      }}, ic('trash'))));
+  });
+  box.append(h('button',{type:'button', class:'btn btn-line btn-sm add-row', onclick:()=>{ list.push({id:'cat-'+Date.now().toString(36), name:{en:'',de:''}}); changed(); render(); setTimeout(()=>{ const ins=[...document.querySelectorAll('.cat-row input')]; ins[ins.length-2] && ins[ins.length-2].focus(); },50); }}, ic('plus'), 'Add category'));
+  const jump = sessionStorage.getItem('fp-open-cats')==='1'; sessionStorage.removeItem('fp-open-cats');
+  if (jump) catsOpen = true; const open = catsOpen;
+  const p = panel('Categories', 'The filters on the “All work” page and the label on each project', [h('p',{class:'hint'}, 'The order here is the order of the filter buttons. Categories without projects are not shown on the site.'), box], open);
+  p.querySelector('.panel-h').addEventListener('click', ()=>{ catsOpen = !p.classList.contains('closed'); });
+  if (jump) setTimeout(()=>p.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+  return p;
+}
 function newProject(){
-  const p = {title:{en:'New project',de:''}, client:'', category:'social', status:'published', featured:false, year:'', cover_image:'', cover_style:'brand', cover_color:'sand', cover_letter:'', behance:'', summary:{en:'',de:''}, body:{en:'',de:''}, gallery:[]};
+  const p = {title:{en:'New project',de:''}, client:'', category:(cats()[0]||{}).id||'', status:'published', featured:false, year:'', cover_image:'', cover_style:'brand', cover_color:'sand', cover_letter:'', behance:'', summary:{en:'',de:''}, body:{en:'',de:''}, gallery:[]};
   DATA.projects.items.unshift(p); reorderMode=false; changed(); location.hash = '#project-0';
 }
 function viewProject(i){
@@ -853,7 +895,8 @@ function viewProject(i){
   const basics = panel('Basics', null, [
     F(bi('title','Project title',{onchange:refreshHead}), p),
     h('div',{class:'row2'}, F({key:'client', label:'Client', onchange:refreshHead}, p), F({key:'year', label:'Year', ph:'e.g. 2025'}, p)),
-    F({key:'category', label:'Category', type:'select', options:CATS, onchange:refreshHead}, p),
+    F({key:'category', label:'Category', type:'select', options:CATS_OPTS(), onchange:refreshHead}, p),
+    h('a',{class:'hint', href:'#projects', onclick:()=>{ sessionStorage.setItem('fp-open-cats','1') }, style:{marginTop:'-8px'}}, 'Add, rename or delete categories →'),
     F({key:'behance', label:'Behance link (optional)', type:'url', ph:'https://www.behance.net/gallery/…', hint:'Adds a “View on Behance” button on the project page.'}, p),
   ]);
   const vis = panel('Visibility', null, [
