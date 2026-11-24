@@ -69,19 +69,19 @@
   },
   "stats": [
     {
-      "number": 9,
-      "suffix": "+",
-      "label": {
-        "en": "years in design",
-        "de": "Jahre im Design"
-      }
-    },
-    {
       "number": 50,
       "suffix": "+",
       "label": {
         "en": "brands & clients",
         "de": "Marken & Kunden"
+      }
+    },
+    {
+      "number": 9,
+      "suffix": "+",
+      "label": {
+        "en": "years in design",
+        "de": "Jahre im Design"
       }
     },
     {
